@@ -7,7 +7,7 @@ interface Props {
 
 const approvers = ["Alice Johnson", "Bob Smith", "Charlie Brown", "Dana White"];
 
-export default function Step1Details({ onNext }: Props) {
+export default function Details({ onNext }: Props) {
   const [batchName, setBatchName] = useState("");
   const [approver, setApprover] = useState("");
   const [file, setFile] = useState<File | null>(null);

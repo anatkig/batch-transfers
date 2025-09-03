@@ -11,7 +11,7 @@ interface Props {
   onBack: () => void;
 }
 
-export default function Step2Review({ onNext, onBack }: Props) {
+export default function Review({ onNext, onBack }: Props) {
   const { addTransactions } = useTransactions();
   const [records, setRecords] = useState<Transaction[]>([]);
 

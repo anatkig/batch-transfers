@@ -9,7 +9,7 @@ interface Props {
 
 type Transaction = { amount?: number };
 
-export default function Step3Summary({ onBack, onClose }: Props) {
+export default function Summary({ onBack, onClose }: Props) {
   const { transactions } = useTransactions() as { transactions: Transaction[] };
 
   const total = transactions.reduce((acc: number, t: Transaction) => acc + (t.amount || 0), 0);
