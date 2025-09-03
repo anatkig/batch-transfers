@@ -3,7 +3,7 @@ import type { Transaction } from "../types/transaction";
 
 interface TransactionContextType {
   transactions: Transaction[];
-  addTransactions: (txs: Transaction[]) => void;
+  addTransaction: (tx: Transaction) => void;
 }
 
 const TransactionContext = createContext<TransactionContextType | null>(null);
@@ -11,12 +11,12 @@ const TransactionContext = createContext<TransactionContextType | null>(null);
 export const TransactionProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
 
-  const addTransactions = (txs: Transaction[]) => {
-    setTransactions(prev => [...prev, ...txs]);
+  const addTransaction = (tx: Transaction) => {
+    setTransactions(prev => [...prev, tx]);
   };
 
   return (
-    <TransactionContext.Provider value={{ transactions, addTransactions }}>
+    <TransactionContext.Provider value={{ transactions, addTransaction }}>
       {children}
     </TransactionContext.Provider>
   );
@@ -25,5 +25,5 @@ export const TransactionProvider: React.FC<{ children: React.ReactNode }> = ({ c
 export const useTransactions = () => {
   const ctx = useContext(TransactionContext);
   if (!ctx) throw new Error("useTransactions must be used inside TransactionProvider");
-  return ctx;
+  return [ctx.transactions as Transaction[], ctx.addTransaction as (txs: Transaction) => void] as const;
 };

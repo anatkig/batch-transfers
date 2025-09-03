@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Dialog, Stepper, Step, StepLabel, DialogContent, DialogTitle } from "@mui/material";
-import Step1Details from "./Details";
-import Step2Review from "./Review";
-import Step3Summary from "./Summary";
+import Details from "./Details";
+import Review from "./Review";
+import Summary from "./Summary";
 
 interface Props {
   open: boolean;
@@ -26,9 +26,9 @@ export default function BatchTransferDialog({ open, onClose }: Props) {
             <Step key={label}><StepLabel>{label}</StepLabel></Step>
           ))}
         </Stepper>
-        {activeStep === 0 && <Step1Details onNext={handleNext} />}
-        {activeStep === 1 && <Step2Review onNext={handleNext} onBack={handleBack} />}
-        {activeStep === 2 && <Step3Summary onBack={handleBack} onClose={onClose} />}
+        {activeStep === 0 && <Details onNext={handleNext} />}
+        {activeStep === 1 && <Review onNext={handleNext} onBack={handleBack} />}
+        {activeStep === 2 && <Summary onBack={handleBack} onClose={onClose} />}
       </DialogContent>
     </Dialog>
   );

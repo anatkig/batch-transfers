@@ -3,7 +3,7 @@ import { Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material"
 import StatusChip from "./StatusChip";
 
 export default function TransactionTable() {
-  const { transactions } = useTransactions();
+  const [transactions, addTransactions] = useTransactions();
 
   return (
     <Table>
@@ -17,12 +17,12 @@ export default function TransactionTable() {
         </TableRow>
       </TableHead>
       <TableBody>
-        {transactions.map(tx => (
+        {transactions.map((tx) => (
           <TableRow key={tx.id}>
             <TableCell>{tx.transactionDate}</TableCell>
             <TableCell>{tx.accountNumber}</TableCell>
             <TableCell>{tx.accountHolderName}</TableCell>
-            <TableCell>{tx.amount.toFixed(2)}</TableCell>
+            <TableCell>{tx.amount?.toFixed(2)}</TableCell>
             <TableCell><StatusChip status={tx.status} error={tx.errorMessage} /></TableCell>
           </TableRow>
         ))}
