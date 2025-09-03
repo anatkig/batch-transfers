@@ -3,7 +3,7 @@ import { Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material"
 import StatusChip from "./StatusChip";
 
 export default function TransactionTable() {
-  const [transactions, addTransactions] = useTransactions();
+  const [transactions] = useTransactions();
 
   return (
     <Table>

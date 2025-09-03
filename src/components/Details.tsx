@@ -1,9 +1,8 @@
-import React, { use, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Button, TextField, MenuItem, Stack } from "@mui/material";
 import { useTransactions } from "../context/TransactionContext";
-import { mapTransactions, validateTransaction } from "../utils/validators";
+import { mapTransactions } from "../utils/validators";
 import Papa from "papaparse";
-import type { Transaction } from "../types/transaction";
 
 
 interface Props {
@@ -18,7 +17,7 @@ export default function Details({ onNext }: Props) {
   const [file, setFile] = useState<File | null>(null);
 
 // Import your context at the top of the file
-const [transactions, addTransaction] = useTransactions();
+const [, addTransaction] = useTransactions();
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files?.[0]) setFile(e.target.files[0]);
