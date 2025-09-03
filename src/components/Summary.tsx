@@ -1,16 +1,18 @@
 import React from "react";
 import { Box, Button, Typography, Stack } from "@mui/material";
-import { useTransactions } from "../../context/TransactionContext";
+import { useTransactions } from "../context/TransactionContext";
 
 interface Props {
   onBack: () => void;
   onClose: () => void;
 }
 
-export default function Step3Summary({ onBack, onClose }: Props) {
-  const { transactions } = useTransactions();
+type Transaction = { amount?: number };
 
-  const total = transactions.reduce((acc, t) => acc + (t.amount || 0), 0);
+export default function Step3Summary({ onBack, onClose }: Props) {
+  const { transactions } = useTransactions() as { transactions: Transaction[] };
+
+  const total = transactions.reduce((acc: number, t: Transaction) => acc + (t.amount || 0), 0);
   const count = transactions.length;
   const average = count ? total / count : 0;
 

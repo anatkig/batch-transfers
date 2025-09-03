@@ -2,10 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Box, Button, Table, TableBody, TableCell, TableHead, TableRow, Stack } from "@mui/material";
 import Papa from "papaparse";
 import dayjs from "dayjs";
-import { v4 as uuid } from "uuid";
-import { Transaction } from "../../types/transaction";
-import { useTransactions } from "../../context/TransactionContext";
-import { validateTransactions } from "../../utils/validators";
+import type { Transaction } from "../types/transaction";
+import { useTransactions } from "../context/TransactionContext";
+import { validateTransactions } from "../utils/validators";
 
 interface Props {
   onNext: () => void;
@@ -77,4 +76,20 @@ Transaction Date,Account Number,Account Holder Name,Amount
               <TableCell>{rec.accountNumber}</TableCell>
               <TableCell>{rec.accountHolderName}</TableCell>
               <TableCell>{rec.amount}</TableCell>
-              <TableCell>{rec.status}</TableCell>
+                        <TableCell>{rec.status}</TableCell>
+                        <TableCell>{rec.errorMessage ?? ""}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+                <Stack direction="row" spacing={2} mt={2}>
+                  <Button variant="contained" color="primary" onClick={handleNext}>
+                    Next
+                  </Button>
+                  <Button variant="outlined" onClick={onBack}>
+                    Back
+                  </Button>
+                </Stack>
+              </Box>
+            )}
+       

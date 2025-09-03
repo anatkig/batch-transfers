@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Dialog, Stepper, Step, StepLabel, DialogContent, DialogTitle } from "@mui/material";
-import Step1Details from "./steps/Step1Details";
-import Step2Review from "./steps/Step2Review";
-import Step3Summary from "./steps/Step3Summary";
+import Step1Details from "./Details";
+import Step2Review from "./Review";
+import Step3Summary from "./Summary";
 
 interface Props {
   open: boolean;

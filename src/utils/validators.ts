@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import { Transaction } from "../types/transaction";
+import type { Transaction } from "../types/transaction";
 
 /**
  * Validate a single CSV row and return the transaction status + error message if invalid
