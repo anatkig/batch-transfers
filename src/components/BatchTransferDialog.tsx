@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Dialog, Stepper, Step, StepLabel, DialogContent, DialogTitle } from "@mui/material";
 import Step1Details from "./Details";
 import Step2Review from "./Review";

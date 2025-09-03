@@ -1,4 +1,3 @@
-import React from "react";
 import { useTransactions } from "../context/TransactionContext";
 import { Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
 import StatusChip from "./StatusChip";

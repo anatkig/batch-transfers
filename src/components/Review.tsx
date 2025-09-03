@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Box, Button, Table, TableBody, TableCell, TableHead, TableRow, Stack } from "@mui/material";
 import Papa from "papaparse";
-import dayjs from "dayjs";
+// import dayjs from "dayjs";
 import type { Transaction } from "../types/transaction";
 import { useTransactions } from "../context/TransactionContext";
 import { validateTransactions } from "../utils/validators";
@@ -16,21 +16,21 @@ export default function Review({ onNext, onBack }: Props) {
   const [records, setRecords] = useState<Transaction[]>([]);
 
   // ✅ CSV validation rules
-  const validateRecord = (row: any): { status: Transaction["status"], errorMessage?: string } => {
-    if (!dayjs(row["Transaction Date"], "YYYY-MM-DD", true).isValid()) {
-      return { status: "Failed", errorMessage: "Invalid transaction date" };
-    }
-    if (!/^000-\d{9}-\d{2}$/.test(row["Account Number"])) {
-      return { status: "Failed", errorMessage: "Invalid account number format" };
-    }
-    if (!row["Account Holder Name"]) {
-      return { status: "Failed", errorMessage: "Account holder name missing" };
-    }
-    if (isNaN(Number(row["Amount"])) || Number(row["Amount"]) <= 0) {
-      return { status: "Failed", errorMessage: "Amount must be positive" };
-    }
-    return { status: "Pending" };
-  };
+//   const validateRecord = (row: any): { status: Transaction["status"], errorMessage?: string } => {
+//     if (!dayjs(row["Transaction Date"], "YYYY-MM-DD", true).isValid()) {
+//       return { status: "Failed", errorMessage: "Invalid transaction date" };
+//     }
+//     if (!/^000-\d{9}-\d{2}$/.test(row["Account Number"])) {
+//       return { status: "Failed", errorMessage: "Invalid account number format" };
+//     }
+//     if (!row["Account Holder Name"]) {
+//       return { status: "Failed", errorMessage: "Account holder name missing" };
+//     }
+//     if (isNaN(Number(row["Amount"])) || Number(row["Amount"]) <= 0) {
+//       return { status: "Failed", errorMessage: "Amount must be positive" };
+//     }
+//     return { status: "Pending" };
+//   };
 
   // 📂 Example CSV load (in real app, use file from Step1 via context)
 useEffect(() => {

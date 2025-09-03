@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Button, Container } from "@mui/material";
 import TransactionTable from "./components/TransactionTable";
 import BatchTransferDialog from "./components/BatchTransferDialog";

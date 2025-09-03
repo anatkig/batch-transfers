@@ -1,4 +1,3 @@
-import React from "react";
 import { Box, Button, Typography, Stack } from "@mui/material";
 import { useTransactions } from "../context/TransactionContext";
 
