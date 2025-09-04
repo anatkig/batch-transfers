@@ -5,7 +5,7 @@ import type { SummaryProps } from "../types/types";
 type Transaction = { amount?: number };
 
 export default function Summary({ onBack, onClose }: SummaryProps) {
-  const [transactions,, clearTransactions] = useTransactions();
+  const [transactions] = useTransactions();
 
   const total = transactions.reduce((acc: number, t: Transaction) => acc + (t.amount || 0), 0);
   const count = transactions.length;
@@ -13,7 +13,6 @@ export default function Summary({ onBack, onClose }: SummaryProps) {
 
   const handleFinishClick = () => {
     onClose();
-    clearTransactions();
   };
 
   return (

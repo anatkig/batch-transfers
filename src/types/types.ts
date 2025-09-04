@@ -5,6 +5,7 @@ export interface Transaction {
   accountHolderName: string;
   amount: number;
   status: "Pending" | "Settled" | "Failed";
+  batchName: string;
   errorMessage?: string;
 }
 
@@ -30,6 +31,12 @@ export interface StatusChipProps {
 export interface SummaryProps {
   onBack: () => void;
   onClose: () => void;
+}
+
+export interface BatchTableProps {
+  batchName: string;
+  transactions: Transaction[];
+  markAsSuccessful: (id: string) => void;
 }
 
 export interface TransactionContextType {

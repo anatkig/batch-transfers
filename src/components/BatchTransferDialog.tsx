@@ -4,16 +4,17 @@ import Details from "./Details";
 import Review from "./Review";
 import Summary from "./Summary";
 import type { BatchTransferDialogProps } from "../types/types";
-
-
-
-const steps = ["Details", "Review", "Summary"];
+import { steps } from "../constants/constants";
 
 export default function BatchTransferDialog({ open, onClose }: BatchTransferDialogProps) {
   const [activeStep, setActiveStep] = useState(0);
 
   const handleNext = () => setActiveStep(prev => prev + 1);
   const handleBack = () => setActiveStep(prev => prev - 1);
+  const handleReset = () => {
+    setActiveStep(0);
+    onClose();
+  }
 
   return (
     <Dialog open={open} onClose={onClose} maxWidth="md" fullWidth>
@@ -26,7 +27,7 @@ export default function BatchTransferDialog({ open, onClose }: BatchTransferDial
         </Stepper>
         {activeStep === 0 && <Details onNext={handleNext} />}
         {activeStep === 1 && <Review onNext={handleNext} onBack={handleBack} />}
-        {activeStep === 2 && <Summary onBack={handleBack} onClose={onClose} />}
+        {activeStep === 2 && <Summary onBack={handleBack} onClose={handleReset} />}
       </DialogContent>
     </Dialog>
   );

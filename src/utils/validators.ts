@@ -44,6 +44,7 @@ export function mapTransactions(rows: any[]): Transaction[] {
       amount: parseFloat(validatedTransaction["Amount"]) || 0,
       status: validatedTransaction.status as "Pending" | "Settled" | "Failed",
       errorMessage: validatedTransaction.errorMessage,
+      batchName: validatedTransaction.batchName
     };
   });
 }

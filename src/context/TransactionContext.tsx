@@ -9,7 +9,7 @@ export const TransactionProvider: React.FC<{ children: React.ReactNode }> = ({ c
   const [transactions, setTransactions] = useState<Transaction[]>([]);
 
   const addTransaction = (tx: Transaction) => {
-    setTransactions(prev => [...prev, tx]);
+    setTransactions(prev => [...prev, { ...tx, id: crypto.randomUUID() }]);
   };
 
   const clearTransactions = () => {

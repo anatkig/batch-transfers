@@ -4,11 +4,7 @@ import { useTransactions } from "../context/TransactionContext";
 import { mapTransactions } from "../utils/validators";
 import Papa from "papaparse";
 import type { DetailsProps } from "../types/types";
-
-
-
-
-const approvers = ["Alice Johnson", "Bob Smith", "Charlie Brown", "Dana White"];
+import { approvers } from "../constants/constants";
 
 export default function Details({ onNext }: DetailsProps) {
   const [batchName, setBatchName] = useState("");
@@ -34,7 +30,7 @@ const [, addTransaction] = useTransactions();
               if (results.data) {
                 const mappedTransactions = mapTransactions(results.data);
                 mappedTransactions.forEach((tx) => {
-                  addTransaction(tx);
+                  addTransaction({ ...tx, batchName });
                 });
               }
           },
