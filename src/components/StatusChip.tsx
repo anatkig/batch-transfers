@@ -1,11 +1,8 @@
 import { Chip, Tooltip } from "@mui/material";
+import type { StatusChipProps } from "../types/types";
 
-interface Props {
-  status: "Pending" | "Settled" | "Failed";
-  error?: string;
-}
 
-export default function StatusChip({ status, error }: Props) {
+export default function StatusChip({ status, error }: StatusChipProps) {
   const color = status === "Pending" ? "warning" : status === "Settled" ? "success" : "error";
   return (
     <Tooltip title={error || ""}>

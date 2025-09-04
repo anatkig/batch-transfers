@@ -1,11 +1,7 @@
 import React, { createContext, useContext, useState } from "react";
-import type { Transaction } from "../types/transaction";
+import type { Transaction } from "../types/types";
+import type { TransactionContextType } from "../types/types";
 
-interface TransactionContextType {
-  transactions: Transaction[];
-  addTransaction: (tx: Transaction) => void;
-  clearTransactions: () => void;
-}
 
 const TransactionContext = createContext<TransactionContextType | null>(null);
 

@@ -1,14 +1,10 @@
 import { Box, Button, Typography, Stack } from "@mui/material";
 import { useTransactions } from "../context/TransactionContext";
-
-interface Props {
-  onBack: () => void;
-  onClose: () => void;
-}
+import type { SummaryProps } from "../types/types";
 
 type Transaction = { amount?: number };
 
-export default function Summary({ onBack, onClose }: Props) {
+export default function Summary({ onBack, onClose }: SummaryProps) {
   const [transactions,, clearTransactions] = useTransactions();
 
   const total = transactions.reduce((acc: number, t: Transaction) => acc + (t.amount || 0), 0);

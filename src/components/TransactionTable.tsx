@@ -2,14 +2,15 @@ import { useTransactions } from "../context/TransactionContext";
 import { Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
 import StatusChip from "./StatusChip";
 import { useEffect, useState } from "react";
-import type { Transaction } from "../types/transaction";
+import type { Transaction } from "../types/types";
+import type { TransactionTableProps } from "../types/types";
 
-export default function TransactionTable() {
+export default function TransactionTable({openDialog}: TransactionTableProps) {
   const [transactions] = useTransactions();
   const [savedTransactions, setSavedTransactions] = useState<Transaction[]>([]);
 
   useEffect(() => {
-    if(transactions.length) {
+    if(transactions.length && openDialog) {
       setSavedTransactions(prev =>
         [
           ...prev,

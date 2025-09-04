@@ -1,13 +1,9 @@
 import { Box, Button, Table, TableBody, TableCell, TableHead, TableRow, Stack } from "@mui/material";
 // import dayjs from "dayjs";
 import { useTransactions } from "../context/TransactionContext";
+import type { ReviewProps } from "../types/types";
 
-interface Props {
-  onNext: () => void;
-  onBack: () => void;
-}
-
-export default function Review({ onNext, onBack }: Props) {
+export default function Review({ onNext, onBack }: ReviewProps) {
   const [transactions] = useTransactions();
   const handleNext = () => {
     onNext();

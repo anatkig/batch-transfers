@@ -3,15 +3,13 @@ import { Dialog, Stepper, Step, StepLabel, DialogContent, DialogTitle } from "@m
 import Details from "./Details";
 import Review from "./Review";
 import Summary from "./Summary";
+import type { BatchTransferDialogProps } from "../types/types";
 
-interface Props {
-  open: boolean;
-  onClose: () => void;
-}
+
 
 const steps = ["Details", "Review", "Summary"];
 
-export default function BatchTransferDialog({ open, onClose }: Props) {
+export default function BatchTransferDialog({ open, onClose }: BatchTransferDialogProps) {
   const [activeStep, setActiveStep] = useState(0);
 
   const handleNext = () => setActiveStep(prev => prev + 1);

@@ -3,15 +3,14 @@ import { Box, Button, TextField, MenuItem, Stack } from "@mui/material";
 import { useTransactions } from "../context/TransactionContext";
 import { mapTransactions } from "../utils/validators";
 import Papa from "papaparse";
+import type { DetailsProps } from "../types/types";
 
 
-interface Props {
-  onNext: () => void;
-}
+
 
 const approvers = ["Alice Johnson", "Bob Smith", "Charlie Brown", "Dana White"];
 
-export default function Details({ onNext }: Props) {
+export default function Details({ onNext }: DetailsProps) {
   const [batchName, setBatchName] = useState("");
   const [approver, setApprover] = useState("");
   const [file, setFile] = useState<File | null>(null);

@@ -11,7 +11,7 @@ export default function App() {
     <TransactionProvider>
       <Container>
         <h1>Batch Transactions</h1>
-        <TransactionTable />
+        <TransactionTable openDialog={open} />
         <Button variant="contained" onClick={() => setOpen(true)}>
           Batch Transfer
         </Button>
