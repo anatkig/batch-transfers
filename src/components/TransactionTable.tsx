@@ -1,9 +1,23 @@
 import { useTransactions } from "../context/TransactionContext";
 import { Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
 import StatusChip from "./StatusChip";
+import { useEffect, useState } from "react";
+import type { Transaction } from "../types/transaction";
 
 export default function TransactionTable() {
   const [transactions] = useTransactions();
+  const [savedTransactions, setSavedTransactions] = useState<Transaction[]>([]);
+
+  useEffect(() => {
+    if(transactions.length) {
+      setSavedTransactions(prev =>
+        [
+          ...prev,
+          ...transactions.filter(tx => !prev.some(savedTx => savedTx.id === tx.id))
+        ]
+      );
+    }
+  }, [transactions]);
 
   return (
     <Table>
@@ -17,7 +31,7 @@ export default function TransactionTable() {
         </TableRow>
       </TableHead>
       <TableBody>
-        {transactions.map((tx) => (
+        {savedTransactions.map((tx) => (
           <TableRow key={tx.id}>
             <TableCell>{tx.transactionDate}</TableCell>
             <TableCell>{tx.accountNumber}</TableCell>

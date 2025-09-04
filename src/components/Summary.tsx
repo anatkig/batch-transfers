@@ -9,11 +9,16 @@ interface Props {
 type Transaction = { amount?: number };
 
 export default function Summary({ onBack, onClose }: Props) {
-  const [transactions] = useTransactions();
+  const [transactions,, clearTransactions] = useTransactions();
 
   const total = transactions.reduce((acc: number, t: Transaction) => acc + (t.amount || 0), 0);
   const count = transactions.length;
   const average = count ? total / count : 0;
+
+  const handleFinishClick = () => {
+    onClose();
+    clearTransactions();
+  };
 
   return (
     <Box mt={3}>
@@ -25,7 +30,7 @@ export default function Summary({ onBack, onClose }: Props) {
       </Stack>
       <Stack direction="row" spacing={2} mt={3}>
         <Button onClick={onBack}>Back</Button>
-        <Button variant="contained" onClick={onClose}>Finish</Button>
+        <Button variant="contained" onClick={handleFinishClick}>Finish</Button>
       </Stack>
     </Box>
   );
