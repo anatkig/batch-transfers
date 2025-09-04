@@ -11,8 +11,7 @@ export default function Details({ onNext }: DetailsProps) {
   const [approver, setApprover] = useState("");
   const [file, setFile] = useState<File | null>(null);
 
-// Import your context at the top of the file
-const [, addTransaction] = useTransactions();
+const [, addTransaction, clearTransactions] = useTransactions();
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files?.[0]) setFile(e.target.files[0]);
@@ -20,10 +19,17 @@ const [, addTransaction] = useTransactions();
 
   const canProceed = batchName && approver && file;
 
-  useEffect(() => {
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setBatchName(e.target.value);
+  };
 
-  if(file) {
-      Papa.parse(file, {
+  const handleApproverChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setApprover(e.target.value);
+  };
+
+  const updateTransactions = (file:File) => {
+      clearTransactions();
+         Papa.parse(file, {
           header: true,
           skipEmptyLines: true,
           complete: (results) => {
@@ -35,6 +41,11 @@ const [, addTransaction] = useTransactions();
               }
           },
       });
+  }
+
+  useEffect(() => {
+    if (file) {
+      updateTransactions(file);
     }
   }, [file]);
 
@@ -45,14 +56,14 @@ const [, addTransaction] = useTransactions();
           label="Batch Transfer Name"
           fullWidth
           value={batchName}
-          onChange={e => setBatchName(e.target.value)}
+          onChange={handleNameChange}
         />
 
         <TextField
           select
           label="Select Approver"
           value={approver}
-          onChange={e => setApprover(e.target.value)}
+          onChange={handleApproverChange}
           fullWidth
         >
           {approvers.map(name => (

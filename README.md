@@ -1,4 +1,6 @@
-You can the porject run on your local with npm install, npm run dev;
+You can the porject run on your local with
+ npm install
+ npm run dev;
 
 
 You can use the following CSV format for testing.
@@ -8,10 +10,11 @@ You can use the following CSV format for testing.
 2025-02-21,000-987654321-02,Jane Smith,250.50
 2025/02/21,00012345678901,Jane Smith,250.50"
 
-
+How to use the app:
 1. press Bench Transfer Button
 2. print Bench Transer Name
 3. select Approver
 4. upload CSV file
 5. press Next
 6. follow the flow
+7. if transaction is pending, you can mark it as successful with a special button
